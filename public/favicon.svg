@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Maison Safa">
+  <rect width="32" height="32" rx="6" fill="#FAF7F2"/>
+  <path fill="#1C1814" d="M6.5 24V8h3.4l6.1 9.6L22.1 8H25.5v16h-3.2V13.6L17.4 21.2h-2.8L9.7 13.6V24H6.5z"/>
+  <rect x="6.5" y="26" width="19" height="1.6" fill="#8D6E3E"/>
+</svg>

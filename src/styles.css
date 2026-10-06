@@ -1,0 +1,231 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ivory: #f3eee6;
+  --color-paper: #faf7f2;
+  --color-ink: #1c1814;
+  --color-muted: #5c564e;
+  --color-brass: #8d6e3e;
+  --color-line: #e3dcd1;
+  --color-swatch-ivory: #efe6d4;
+  --color-swatch-sand: #c6b08e;
+  --color-swatch-charcoal: #2a2724;
+  --color-swatch-olive: #5a6046;
+  --color-swatch-black: #161311;
+  --color-swatch-taupe: #b09e8b;
+  --color-swatch-navy: #243044;
+  --font-serif: "Cormorant Garamond", "Iowan Old Style", Palatino, serif;
+  --font-sans: "Outfit", "Avenir Next", "Segoe UI", sans-serif;
+  --shadow-panel: 0 24px 64px rgb(28 24 20 / 0.14);
+  --tracking-label: 0.18em;
+  --aspect-portrait: 3 / 4;
+  --aspect-landscape: 3 / 2;
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+    background: var(--color-ivory);
+    color: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    min-height: 100%;
+    background: var(--color-ivory);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    line-height: 1.5;
+    text-wrap: pretty;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled),
+  summary {
+    cursor: pointer;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary {
+    list-style: none;
+  }
+
+  ::selection {
+    background: var(--color-brass);
+    color: var(--color-ivory);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brass);
+    outline-offset: 3px;
+  }
+}
+
+.display {
+  font-family: var(--font-serif);
+  font-size: clamp(3.25rem, 7vw, 6.25rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 0.92;
+}
+
+.quote {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.tap {
+  transition: scale 150ms ease-out;
+}
+
+.tap:active:not(:disabled) {
+  scale: 0.96;
+}
+
+.card-media {
+  transition: scale 240ms ease-out;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .group:hover .card-media {
+    scale: 1.03;
+  }
+}
+
+.field {
+  width: 100%;
+  min-height: 2.75rem;
+  border: 0;
+  border-bottom: 1px solid var(--color-line);
+  border-radius: 0;
+  background: transparent;
+  color: var(--color-ink);
+  padding: 0.6rem 0;
+  font: inherit;
+}
+
+.field:focus-visible {
+  outline: none;
+  border-bottom-color: var(--color-ink);
+}
+
+.field[aria-invalid="true"] {
+  border-bottom-color: var(--color-brass);
+}
+
+.select {
+  min-height: 2.75rem;
+  border: 0;
+  border-bottom: 1px solid var(--color-line);
+  background: transparent;
+  color: var(--color-ink);
+  font: inherit;
+}
+
+.plus {
+  transition: transform 200ms ease-out;
+}
+
+details[open] .plus {
+  transform: rotate(45deg);
+}
+
+.safe-bottom {
+  padding-bottom: max(1.25rem, env(safe-area-inset-bottom));
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: rgb(28 24 20 / 0.42);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease-out;
+}
+
+.backdrop[data-open="true"] {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.panel {
+  position: fixed;
+  z-index: 50;
+  background: var(--color-ivory);
+  color: var(--color-ink);
+}
+
+.panel-right {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(100%, 28rem);
+  transform: translateX(104%);
+  box-shadow: var(--shadow-panel);
+  transition: transform 220ms ease-out;
+}
+
+.panel-right[data-open="true"] {
+  transform: translateX(0);
+}
+
+.panel-top {
+  top: 0;
+  right: 0;
+  left: 0;
+  max-height: min(100%, 40rem);
+  transform: translateY(-104%);
+  overflow: auto;
+  box-shadow: var(--shadow-panel);
+  transition: transform 220ms ease-out;
+}
+
+.panel-top[data-open="true"] {
+  transform: translateY(0);
+}
+
+.panel-full {
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition:
+    opacity 200ms ease-out,
+    transform 200ms ease-out;
+}
+
+.panel-full[data-open="true"] {
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
