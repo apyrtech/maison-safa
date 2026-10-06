@@ -1,0 +1,85 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "eyebrow": "Autumn 2026",
+        "heading": "The thobe.\nThe abaya.\nThe koofi.",
+        "copy": "Maison Safa is a small house for these three. Cloth we can name. Seams you can trust. Cut to order in Riyadh, finished to the same pattern in London.",
+        "primary": "Shop the house",
+        "secondary": "The atelier",
+        "image_alt": "An ivory thobe, a black abaya, and a cream koofi in the atelier."
+      }
+    },
+    "facts": {
+      "type": "facts",
+      "blocks": {
+        "cloth": { "type": "fact", "settings": { "label": "Cloth", "text": "Named mills. Cotton, crepe, wool, linen." } },
+        "cut": { "type": "fact", "settings": { "label": "Cut", "text": "Numbered sizes, tried on a standing form." } },
+        "time": { "type": "fact", "settings": { "label": "Time", "text": "Two to three weeks, cut to order." } },
+        "repair": { "type": "fact", "settings": { "label": "Repair", "text": "Seams and cuffs, for the life of the cloth." } }
+      },
+      "block_order": ["cloth", "cut", "time", "repair"]
+    },
+    "edit": {
+      "type": "edit",
+      "settings": {
+        "handles": "qasr, safa, madina, marjan, noor, atlas"
+      }
+    },
+    "categories": {
+      "type": "categories",
+      "blocks": {
+        "thobes": {
+          "type": "category",
+          "settings": {
+            "index": "01",
+            "label": "Thobes",
+            "title": "For the long day",
+            "copy": "Ankle-length and straight through the body. Cotton and linen for heat, wool when the evening asks for it.",
+            "collection": "thobes",
+            "asset": "qasr.jpg",
+            "image_alt": "The Qasr, an ivory thobe, hanging on a walnut hanger.",
+            "flip": false
+          }
+        },
+        "abayas": {
+          "type": "category",
+          "settings": {
+            "index": "02",
+            "label": "Abayas",
+            "title": "An honest fall",
+            "copy": "Outer layers with a clean shoulder and a sleeve that stays out of the way. Open, or closed with covered buttons.",
+            "collection": "abayas",
+            "asset": "safa.jpg",
+            "image_alt": "The Safa, a black open abaya, hanging in the atelier.",
+            "flip": true
+          }
+        },
+        "koofis": {
+          "type": "category",
+          "settings": {
+            "index": "03",
+            "label": "Koofis",
+            "title": "Close to the head",
+            "copy": "The koofi — our name for the kufi cap. Crochet, knit, linen, and wool. Nothing with a brim.",
+            "collection": "koofis",
+            "asset": "madina.jpg",
+            "image_alt": "The Madina, a cream crocheted koofi, resting on limestone.",
+            "flip": false
+          }
+        }
+      },
+      "block_order": ["thobes", "abayas", "koofis"]
+    },
+    "quote": {
+      "type": "quote",
+      "settings": {
+        "eyebrow": "The house",
+        "quote": "We would rather make fewer things, and mend them.",
+        "link": "Read the atelier"
+      }
+    }
+  },
+  "order": ["hero", "facts", "edit", "categories", "quote"]
+}

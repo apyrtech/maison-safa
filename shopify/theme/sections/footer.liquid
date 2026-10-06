@@ -1,0 +1,37 @@
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div>
+      <p class="wordmark serif">Maison<br>Safa</p>
+      <p class="muted" style="margin-top:1rem;max-width:22rem;font-size:0.9rem;">
+        Thobes, abayas, and koofis. Cut to order in Riyadh, with a finishing room in London.
+      </p>
+    </div>
+    <div>
+      <p class="label">Visit</p>
+      <ul>
+        <li><a href="{{ routes.all_products_collection_url }}">Shop</a></li>
+        <li><a href="/pages/atelier">Atelier</a></li>
+        <li><a href="mailto:{{ settings.contact_email }}">{{ settings.contact_email }}</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="label">House notes</p>
+      <ul>
+        <li><a href="/pages/atelier#shipping">Shipping</a></li>
+        <li><a href="/pages/atelier#care">Cloth care</a></li>
+        <li><a href="/pages/atelier#repair">Repair</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap legal">
+    <p>© {{ 'now' | date: '%Y' }} {{ shop.name }}</p>
+    <p>Prices follow your Shopify currency.</p>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": []
+}
+{% endschema %}

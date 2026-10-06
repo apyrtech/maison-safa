@@ -1,0 +1,31 @@
+<div class="wrap page">
+  <p class="label">Search</p>
+  <h1 class="page-title" style="margin-top:0.5rem;">
+    {% if search.performed %}{{ search.terms }}{% else %}Search the house{% endif %}
+  </h1>
+  <form class="search-form" action="{{ routes.search_url }}" method="get" role="search" style="padding-left:0;padding-right:0;">
+    <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search pieces" aria-label="Search pieces">
+    <input type="hidden" name="type" value="product">
+    <button class="btn btn-ink" type="submit">Search</button>
+  </form>
+  {% if search.performed %}
+    {% if search.results_count == 0 %}
+      <p class="empty">Nothing under that name.</p>
+    {% else %}
+      <div class="product-grid">
+        {% for product in search.results %}
+          {% if product.object_type == 'product' or product.price %}
+            {% render 'card', product: product, handle: product.handle %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Search",
+  "settings": []
+}
+{% endschema %}

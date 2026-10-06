@@ -1,0 +1,83 @@
+{% assign handles = section.settings.handles | split: ',' %}
+<section class="wrap section">
+  <div class="section-head">
+    <h2>The edit</h2>
+    <a class="quiet-link" href="{{ routes.all_products_collection_url }}">All pieces</a>
+  </div>
+
+  <div class="edit-grid">
+    {% for raw in handles %}
+      {% assign handle = raw | strip %}
+      {% assign piece = all_products[handle] %}
+      {% render 'card', product: piece, handle: handle %}
+    {% endfor %}
+  </div>
+
+  <div class="edit-index">
+    {% assign first = handles.first | strip %}
+    {% assign lead = all_products[first] %}
+    <div data-edit-preview>
+      <div class="portrait">
+        {% if lead.id and lead.featured_image %}
+          <img src="{{ lead.featured_image | image_url: width: 1200 }}" alt="{{ lead.title | escape }}" width="900" height="1200" class="cover">
+        {% else %}
+          <img src="{{ first | append: '.jpg' | asset_url }}" alt="" width="900" height="1200" class="cover">
+        {% endif %}
+      </div>
+      <div class="card-title">
+        <p data-edit-name>{% if lead.id %}{{ lead.title }}{% else %}The Qasr{% endif %}</p>
+        <p data-edit-price>{% if lead.id %}{{ lead.price | money }}{% endif %}</p>
+      </div>
+      <p class="card-meta" data-edit-fabric>{% if lead.id %}{{ lead.type }}{% endif %}</p>
+    </div>
+    <ol class="edit-list">
+      {% for raw in handles %}
+        {% assign handle = raw | strip %}
+        {% assign piece = all_products[handle] %}
+        {% if piece.id %}
+          {% assign image = piece.featured_image | image_url: width: 1200 %}
+          {% assign title = piece.title %}
+          {% assign price = piece.price | money %}
+          {% assign fabric = piece.type %}
+          {% assign url = piece.url %}
+        {% else %}
+          {% assign image = handle | append: '.jpg' | asset_url %}
+          {% assign title = handle | capitalize %}
+          {% assign price = '' %}
+          {% assign fabric = '' %}
+          {% assign url = '/products/' | append: handle %}
+        {% endif %}
+        <li>
+          <a
+            href="{{ url }}"
+            data-edit-link
+            data-image="{{ image }}"
+            data-name="{{ title | escape }}"
+            data-price="{{ price | escape }}"
+            data-fabric="{{ fabric | escape }}"
+            data-alt="{{ title | escape }}"
+            {% if forloop.first %}aria-current="true"{% endif %}
+          >
+            <span class="name"><span class="idx">{{ forloop.index | prepend: '00' | slice: -2, 2 }}</span>{{ title }}</span>
+            <span>{{ price }}</span>
+          </a>
+        </li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "The edit",
+  "settings": [
+    {
+      "type": "text",
+      "id": "handles",
+      "label": "Product handles, comma separated",
+      "default": "qasr, safa, madina, marjan, noor, atlas"
+    }
+  ],
+  "presets": [{ "name": "The edit" }]
+}
+{% endschema %}

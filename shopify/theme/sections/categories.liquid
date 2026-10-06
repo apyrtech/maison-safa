@@ -1,0 +1,91 @@
+<section>
+  {% for block in section.blocks %}
+    <article class="category{% if block.settings.flip %} flip{% endif %}" {{ block.shopify_attributes }}>
+      <div class="category-media portrait">
+        {% if block.settings.image != blank %}
+          {{ block.settings.image | image_url: width: 1600 | image_tag: alt: block.settings.image_alt, class: 'cover', loading: 'lazy' }}
+        {% else %}
+          <img src="{{ block.settings.asset | asset_url }}" alt="{{ block.settings.image_alt | escape }}" class="cover" loading="lazy">
+        {% endif %}
+      </div>
+      <div class="category-copy">
+        <p class="label">{{ block.settings.index }} — {{ block.settings.label }}</p>
+        <div>
+          <h2>{{ block.settings.title }}</h2>
+          <p>{{ block.settings.copy }}</p>
+          <a class="arrow-link" href="/collections/{{ block.settings.collection }}">
+            Shop {{ block.settings.label | downcase }}
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </article>
+  {% endfor %}
+</section>
+
+{% schema %}
+{
+  "name": "Categories",
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        { "type": "text", "id": "index", "label": "Number", "default": "01" },
+        { "type": "text", "id": "label", "label": "Label", "default": "Thobes" },
+        { "type": "text", "id": "title", "label": "Title", "default": "For the long day" },
+        { "type": "textarea", "id": "copy", "label": "Copy", "default": "Ankle-length and straight through the body." },
+        { "type": "text", "id": "collection", "label": "Collection handle", "default": "thobes" },
+        { "type": "text", "id": "asset", "label": "Fallback image file", "default": "qasr.jpg" },
+        { "type": "image_picker", "id": "image", "label": "Replace photograph" },
+        { "type": "text", "id": "image_alt", "label": "Photograph description", "default": "" },
+        { "type": "checkbox", "id": "flip", "label": "Image on the right", "default": false }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Categories",
+      "blocks": [
+        {
+          "type": "category",
+          "settings": {
+            "index": "01",
+            "label": "Thobes",
+            "title": "For the long day",
+            "copy": "Ankle-length and straight through the body. Cotton and linen for heat, wool when the evening asks for it.",
+            "collection": "thobes",
+            "asset": "qasr.jpg",
+            "image_alt": "The Qasr, an ivory thobe, hanging on a walnut hanger."
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "index": "02",
+            "label": "Abayas",
+            "title": "An honest fall",
+            "copy": "Outer layers with a clean shoulder and a sleeve that stays out of the way. Open, or closed with covered buttons.",
+            "collection": "abayas",
+            "asset": "safa.jpg",
+            "image_alt": "The Safa, a black open abaya, hanging in the atelier.",
+            "flip": true
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "index": "03",
+            "label": "Koofis",
+            "title": "Close to the head",
+            "copy": "The koofi — our name for the kufi cap. Crochet, knit, linen, and wool. Nothing with a brim.",
+            "collection": "koofis",
+            "asset": "madina.jpg",
+            "image_alt": "The Madina, a cream crocheted koofi, resting on limestone."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

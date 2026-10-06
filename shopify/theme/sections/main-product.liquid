@@ -1,0 +1,83 @@
+{% assign current = product.selected_or_first_available_variant %}
+<div class="wrap product">
+  <div>
+    <p class="crumb">
+      <a href="{{ routes.all_products_collection_url }}">Shop</a>
+      {% if product.tags contains 'thobes' %} / <a href="/collections/thobes">Thobes</a>
+      {% elsif product.tags contains 'abayas' %} / <a href="/collections/abayas">Abayas</a>
+      {% elsif product.tags contains 'koofis' %} / <a href="/collections/koofis">Koofis</a>
+      {% endif %}
+    </p>
+    <div class="product-media portrait" style="margin-top:1.25rem;">
+      {% if product.featured_image %}
+        <img
+          src="{{ product.featured_image | image_url: width: 1600 }}"
+          alt="{{ product.featured_image.alt | default: product.title | escape }}"
+          width="1200"
+          height="1600"
+          class="cover"
+        >
+      {% else %}
+        <img src="{{ product.handle | append: '.jpg' | asset_url }}" alt="{{ product.title | escape }}" class="cover">
+      {% endif %}
+    </div>
+  </div>
+
+  <div>
+    <h1>{{ product.title }}</h1>
+    <p class="product-price">{{ current.price | money }}</p>
+    {% if product.type != blank %}
+      <p class="card-meta">{{ product.type }}</p>
+    {% endif %}
+
+    {% form 'product', product, class: 'product-form' %}
+      <fieldset class="sizes">
+        <legend class="label">Size</legend>
+        {% for variant in product.variants %}
+          <label class="size">
+            <input
+              type="radio"
+              name="id"
+              value="{{ variant.id }}"
+              {% unless variant.available %}disabled{% endunless %}
+              required
+            >
+            <span>{{ variant.title }}</span>
+          </label>
+        {% endfor %}
+      </fieldset>
+      <button class="btn btn-ink" type="submit" name="add">Add to bag</button>
+      <p class="form-note" data-form-note></p>
+    {% endform %}
+
+    <div class="rte">
+      {{ product.description }}
+    </div>
+  </div>
+</div>
+
+{% assign related_handle = '' %}
+{% if product.tags contains 'thobes' %}{% assign related_handle = 'thobes' %}{% endif %}
+{% if product.tags contains 'abayas' %}{% assign related_handle = 'abayas' %}{% endif %}
+{% if product.tags contains 'koofis' %}{% assign related_handle = 'koofis' %}{% endif %}
+{% if related_handle != blank and collections[related_handle].products.size > 1 %}
+  <div class="wrap related">
+    <h2>With this</h2>
+    <div class="product-grid">
+      {% assign shown = 0 %}
+      {% for related in collections[related_handle].products %}
+        {% if related.handle != product.handle and shown < 3 %}
+          {% render 'card', product: related, handle: related.handle %}
+          {% assign shown = shown | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Product",
+  "settings": []
+}
+{% endschema %}

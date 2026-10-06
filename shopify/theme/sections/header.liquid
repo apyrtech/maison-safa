@@ -1,0 +1,74 @@
+<header class="site-header">
+  <div class="wrap-wide bar">
+    <div>
+      <button
+        class="icon-btn menu-toggle"
+        type="button"
+        aria-label="Open menu"
+        aria-expanded="false"
+        data-open-panel="menu"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16"/>
+        </svg>
+      </button>
+      <nav class="nav-desktop" aria-label="Primary">
+        <a href="{{ routes.all_products_collection_url }}" {% if request.page_type == 'collection' and collection.handle == 'all' %}aria-current="page"{% endif %}>Shop</a>
+        <a href="/collections/thobes" {% if collection.handle == 'thobes' %}aria-current="page"{% endif %}>Thobes</a>
+        <a href="/collections/abayas" {% if collection.handle == 'abayas' %}aria-current="page"{% endif %}>Abayas</a>
+        <a href="/collections/koofis" {% if collection.handle == 'koofis' %}aria-current="page"{% endif %}>Koofis</a>
+        <a href="/pages/atelier" {% if page.handle == 'atelier' %}aria-current="page"{% endif %}>Atelier</a>
+      </nav>
+    </div>
+
+    <a class="logo" href="{{ routes.root_url }}">{{ shop.name }}</a>
+
+    <div class="header-tools">
+      <button class="icon-btn" type="button" aria-label="Search pieces" aria-expanded="false" data-open-panel="search">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+          <circle cx="11" cy="11" r="6"/><path d="M16 16l4 4"/>
+        </svg>
+      </button>
+      <button class="icon-btn" type="button" aria-label="Bag" aria-expanded="false" data-open-panel="cart" style="width:auto;padding:0 0.4rem;display:inline-flex;gap:0.3rem;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+          <path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V7a3 3 0 0 1 6 0v1"/>
+        </svg>
+        <span class="bag-count" data-cart-count>{% if cart.item_count > 0 %}{{ cart.item_count }}{% endif %}</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="backdrop" data-close-panel></div>
+
+<div class="drawer drawer-top" data-panel="menu" data-open="false" aria-hidden="true" role="dialog" aria-label="Menu">
+  <div class="drawer-head">
+    <h2>Menu</h2>
+    <button class="icon-btn" type="button" aria-label="Close" data-close-panel>Close</button>
+  </div>
+  <nav class="mobile-nav" aria-label="Mobile">
+    <a href="{{ routes.all_products_collection_url }}">Shop</a>
+    <a href="/collections/thobes">Thobes</a>
+    <a href="/collections/abayas">Abayas</a>
+    <a href="/collections/koofis">Koofis</a>
+    <a href="/pages/atelier">Atelier</a>
+  </nav>
+</div>
+
+<div class="drawer drawer-top" data-panel="search" data-open="false" aria-hidden="true" role="dialog" aria-label="Search">
+  <div class="drawer-head">
+    <h2>Search</h2>
+    <button class="icon-btn" type="button" aria-label="Close" data-close-panel>Close</button>
+  </div>
+  <form class="search-form" action="{{ routes.search_url }}" method="get" role="search">
+    <input type="search" name="q" placeholder="Search pieces" aria-label="Search pieces" value="{{ search.terms | escape }}">
+    <button class="btn btn-ink" type="submit">Search</button>
+  </form>
+</div>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": []
+}
+{% endschema %}

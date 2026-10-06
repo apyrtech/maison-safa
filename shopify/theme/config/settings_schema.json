@@ -1,0 +1,63 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Maison Safa",
+    "theme_version": "1.0.0",
+    "theme_author": "Maison Safa",
+    "theme_documentation_url": "https://github.com/apyrtech/maison-safa",
+    "theme_support_url": "https://github.com/apyrtech/maison-safa"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_ivory",
+        "label": "Ivory",
+        "default": "#f3eee6"
+      },
+      {
+        "type": "color",
+        "id": "color_ink",
+        "label": "Ink",
+        "default": "#1c1814"
+      },
+      {
+        "type": "color",
+        "id": "color_muted",
+        "label": "Muted",
+        "default": "#5c564e"
+      },
+      {
+        "type": "color",
+        "id": "color_brass",
+        "label": "Brass",
+        "default": "#8d6e3e"
+      },
+      {
+        "type": "color",
+        "id": "color_line",
+        "label": "Line",
+        "default": "#e3dcd1"
+      }
+    ]
+  },
+  {
+    "name": "House",
+    "settings": [
+      {
+        "type": "text",
+        "id": "contact_email",
+        "label": "Atelier email",
+        "default": "atelier@maisonsafa.com"
+      },
+      {
+        "type": "text",
+        "id": "free_shipping",
+        "label": "Free shipping from (store currency)",
+        "default": "280",
+        "info": "Used only for the note in the bag. Set the real rule under Settings → Shipping."
+      }
+    ]
+  }
+]

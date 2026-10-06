@@ -1,0 +1,74 @@
+<div class="wrap page">
+  <div class="page-grid">
+    <div>
+      <p class="label">The atelier</p>
+      <h1 class="page-title" style="margin-top:0.6rem;">A house for three garments.</h1>
+    </div>
+    <p class="muted">
+      Maison Safa began in a Riyadh cutting room and keeps a finishing table in London. We make
+      the thobe, the abaya, and the koofi. Each is cut in small runs from cloth we can name —
+      cotton with a known staple, crepe with a known hand, wool that holds a crease.
+    </p>
+  </div>
+</div>
+
+<div class="landscape">
+  {% if section.settings.image != blank %}
+    {{ section.settings.image | image_url: width: 2000 | image_tag: alt: 'Oak worktable with ivory cloth, brass shears, thread, and a wooden ruler.', class: 'cover' }}
+  {% else %}
+    <img class="cover" src="{{ 'atelier.jpg' | asset_url }}" alt="Oak worktable with ivory cloth, brass shears, thread, and a wooden ruler.">
+  {% endif %}
+</div>
+
+<div class="wrap" style="padding:4rem 0;">
+  <div class="page-grid">
+    <div>
+      <h2 class="page-title">How a piece is cut</h2>
+      <div class="muted" style="margin-top:1.25rem;">
+        <p>Patterns are tried on a standing form, not only on the table. A thobe in size 56 is checked at the shoulder, the cuff, and the place the hem meets the shoe. Abayas are walked. If the sleeve catches, we recut it.</p>
+        <p style="margin-top:0.85rem;">Koofis are the smallest thing we make and the one people notice last. The Madina is crocheted. The Atlas is linen and holds its own shape. None of them have a brim.</p>
+        <p style="margin-top:0.85rem;">We do not add ornament that the cloth did not ask for. A cuff stitch, a covered button, a pocket you will use. That is the list.</p>
+      </div>
+    </div>
+    <aside>
+      <p class="label">On the table</p>
+      <ul class="note-list">
+        <li><a href="/products/qasr">The Qasr <span>Ivory</span></a></li>
+        <li><a href="/products/safa">The Safa <span>Black</span></a></li>
+        <li><a href="/products/madina">The Madina <span>Cream</span></a></li>
+      </ul>
+    </aside>
+  </div>
+
+  <section id="shipping" class="split">
+    <h2>Shipping</h2>
+    <div class="muted">
+      <p>Pieces are cut to order. Allow two to three weeks before they leave the room.</p>
+      <p>Shipping is complimentary from {{ settings.free_shipping }} in your store currency to the Gulf states, the United Kingdom, the European Union, and the United States. Set that rule in Shopify under Settings, Shipping. Elsewhere, reply with a quote before anything is made.</p>
+      <p>Unworn pieces can come back within fourteen days. Anything adjusted for height stays with the client.</p>
+    </div>
+  </section>
+  <section id="care" class="split">
+    <h2>Cloth care</h2>
+    <div class="muted">
+      <p>Every piece carries its own note. In general: cool water, no tumble, iron or steam from the reverse. Wool is brushed, not soaked. Crochet is dried over a bowl so it keeps the circle.</p>
+      <p>Hang thobes and abayas the day they arrive. A fold left in the parcel becomes a crease.</p>
+    </div>
+  </section>
+  <section id="repair" class="split">
+    <h2>Repair</h2>
+    <div class="muted">
+      <p>We mend seams, cuffs, hems, and koofi edges for the life of the cloth. The client pays the postage. The house pays the thread.</p>
+      <p><a href="mailto:{{ settings.contact_email }}" style="color:inherit;text-decoration:underline;text-underline-offset:4px;">{{ settings.contact_email }}</a></p>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Atelier",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Table photograph" }
+  ]
+}
+{% endschema %}

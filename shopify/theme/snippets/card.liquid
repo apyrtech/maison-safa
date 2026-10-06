@@ -1,0 +1,33 @@
+{% comment %} product may be empty before the catalog import {% endcomment %}
+{% if product.id %}
+  <a class="card" href="{{ product.url }}">
+    <div class="portrait">
+      {% if product.featured_image %}
+        <img
+          src="{{ product.featured_image | image_url: width: 900 }}"
+          alt="{{ product.featured_image.alt | default: product.title | escape }}"
+          width="700"
+          height="933"
+          class="cover"
+          loading="lazy"
+        >
+      {% else %}
+        <img src="{{ handle | append: '.jpg' | asset_url }}" alt="{{ product.title | escape }}" class="cover" loading="lazy">
+      {% endif %}
+    </div>
+    <div class="card-title">
+      <span>{{ product.title }}</span>
+      <span class="price">{{ product.price | money }}</span>
+    </div>
+    <p class="card-meta">{{ product.type }}</p>
+  </a>
+{% elsif handle != blank %}
+  <a class="card" href="/products/{{ handle }}">
+    <div class="portrait">
+      <img src="{{ handle | append: '.jpg' | asset_url }}" alt="" class="cover" loading="lazy">
+    </div>
+    <div class="card-title">
+      <span>{{ handle | replace: '-', ' ' | capitalize }}</span>
+    </div>
+  </a>
+{% endif %}

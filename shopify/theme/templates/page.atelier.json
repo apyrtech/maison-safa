@@ -1,0 +1,6 @@
+{
+  "sections": {
+    "main": { "type": "atelier", "settings": {} }
+  },
+  "order": ["main"]
+}

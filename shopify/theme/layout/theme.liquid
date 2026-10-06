@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}" data-money="{{ shop.money_format | escape }}" data-free-shipping="{{ settings.free_shipping | escape }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="{{ settings.color_ivory }}">
+    <title>
+      {{ page_title }}
+      {%- unless page_title contains shop.name %} — {{ shop.name }}{% endunless -%}
+    </title>
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
+    <link rel="canonical" href="{{ canonical_url }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Outfit:wght@400;500&display=swap" rel="stylesheet">
+    {{ content_for_header }}
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+    {% style %}
+      :root {
+        --ivory: {{ settings.color_ivory }};
+        --ink: {{ settings.color_ink }};
+        --muted: {{ settings.color_muted }};
+        --brass: {{ settings.color_brass }};
+        --line: {{ settings.color_line }};
+      }
+    {% endstyle %}
+  </head>
+  <body>
+    <a class="skip" href="#MainContent">Skip to content</a>
+    {% section 'header' %}
+    <main id="MainContent">
+      {{ content_for_layout }}
+    </main>
+    {% section 'footer' %}
+    {% section 'cart-drawer' %}
+    <script src="{{ 'theme.js' | asset_url }}" defer></script>
+  </body>
+</html>

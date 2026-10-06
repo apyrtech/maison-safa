@@ -1,0 +1,41 @@
+<div class="drawer drawer-right" data-panel="cart" data-open="false" aria-hidden="true" role="dialog" aria-label="Bag">
+  <div class="drawer-head">
+    <h2>Bag</h2>
+    <button class="icon-btn" type="button" aria-label="Close bag" data-close-panel>Close</button>
+  </div>
+  <div class="drawer-body" data-cart-body>
+    {% if cart.item_count == 0 %}
+      <p class="empty">The bag is empty.</p>
+    {% else %}
+      {% for item in cart.items %}
+        <article class="line">
+          <div class="portrait">
+            {% if item.image %}
+              <img src="{{ item.image | image_url: width: 320 }}" alt="" width="160" height="200" class="cover">
+            {% endif %}
+          </div>
+          <div>
+            <h3>{{ item.product.title }}</h3>
+            <p class="card-meta">{{ item.variant.title }}</p>
+            <p class="card-meta">{{ item.final_line_price | money }}</p>
+          </div>
+        </article>
+      {% endfor %}
+    {% endif %}
+  </div>
+  <div class="drawer-foot" data-cart-foot {% if cart.item_count == 0 %}hidden{% endif %}>
+    <p class="muted" data-ship-note style="margin-bottom:0.75rem;">Cut to order. Allow two to three weeks.</p>
+    <div class="totals">
+      <span>Subtotal</span>
+      <span data-cart-total>{{ cart.total_price | money }}</span>
+    </div>
+    <a class="btn btn-ink" href="/checkout" style="width:100%;">Checkout</a>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Cart drawer",
+  "settings": []
+}
+{% endschema %}

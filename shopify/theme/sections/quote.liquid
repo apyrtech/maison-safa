@@ -1,0 +1,19 @@
+<section class="house-band">
+  <div class="wrap section">
+    <p class="label">{{ section.settings.eyebrow }}</p>
+    <blockquote class="quote">{{ section.settings.quote }}</blockquote>
+    <a href="/pages/atelier">{{ section.settings.link }}</a>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "House quote",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The house" },
+    { "type": "textarea", "id": "quote", "label": "Quote", "default": "We would rather make fewer things, and mend them." },
+    { "type": "text", "id": "link", "label": "Link label", "default": "Read the atelier" }
+  ],
+  "presets": [{ "name": "House quote" }]
+}
+{% endschema %}

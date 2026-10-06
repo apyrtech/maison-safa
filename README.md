@@ -36,4 +36,14 @@ From your existing website, either:
 
 A custom subdomain (`demo.yoursite.com`) can point at the same Vercel project in the project’s domain settings.
 
-Netlify and similar hosts also work if they can run a Node build. A plain HTML upload (cPanel “public_html”, GitHub Pages without a build) will not, because the shop is a small web application, not one static page.
+## Shopify
+
+This repository is a React preview, not a Shopify theme. Shopify cannot import it directly.
+
+The `shopify/` folder is the convertible version:
+
+- `shopify/products.csv` — the twelve pieces, with sizes, prices, cloth notes, and photographs
+- `shopify/maison-safa-shopify-theme.zip` — the same house, as a theme you upload
+- `shopify/IMPORT.md` — the admin steps, in order
+
+Set the store currency to USD before importing. Checkout and shipping then belong to Shopify.
